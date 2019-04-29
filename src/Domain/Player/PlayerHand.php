@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Domain\Player;
+
+use App\Domain\Deck\Card;
 
 class PlayerHand
 {
-    private $uuid;
+    /** @var Card[] */
+    private $cards = [];
+
 }

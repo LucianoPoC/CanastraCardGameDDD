@@ -4,26 +4,31 @@ declare(strict_types=1);
 
 namespace App\Domain\Deck;
 
-class Deck implements DeckInterface
+use SplStack;
+
+class Deck extends SplStack implements DeckInterface
 {
-    public const CLUBS = 0;
-    public const DIAMONDS = 1;
-    public const HEARTS = 2;
-    public const SPADES = 3;
-
+    /** @var Card[] */
     private $cards = [];
-    private $naips = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-    private $numbers = [];
 
-    /**
-     * Deck constructor.
-     */
     public function __construct()
     {
-        foreach ($this->naips as $naip) {
-            foreach (range(1, 13) as $number) {
-                $this->cards[$naip][$number] = true;
-            }
-        }
+//        $values = array_merge([Value::ACE], range(2, 10), [Value::JACK, Value::QUEEN, Value::KING]);
+//
+//        foreach ([Suit::SPADES, Suit::HEARTS, Suit::DIAMONDS, Suit::CLUBS] as $suit) {
+//            foreach ($values as $value) {
+//                $this->cards[] = $value.$suit;
+//            }
+//        }
+//
+//        var_dump($this->cards);exit;
     }
+
+    public function pop()
+    {
+        parent::pop();
+        return array_pop($this->cards);
+    }
+
+
 }

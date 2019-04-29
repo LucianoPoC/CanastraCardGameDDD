@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Factory;
+namespace App\Domain\Player\Factory;
+
+use App\Domain\Player\PlayerInterface;
 
 interface PlayerFactoryInterface
 {

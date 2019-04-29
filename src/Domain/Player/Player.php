@@ -2,15 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Domain\Player;
 
-class Player
+class Player implements PlayerInterface
 {
     /** @var PlayerHand */
     private $playerHand = array();
 
-    public function receiveCards(array $cards): void
+    /**
+     * @return PlayerHand
+     */
+    public function getPlayerHand(): PlayerHand
     {
-        $this->playerHand = $cards;
+        return $this->playerHand;
+    }
+
+    /**
+     * @param PlayerHand $playerHand
+     * @return PlayerInterface
+     */
+    public function setPlayerHand(PlayerHand $playerHand): PlayerInterface
+    {
+        $this->playerHand = $playerHand;
     }
 }
