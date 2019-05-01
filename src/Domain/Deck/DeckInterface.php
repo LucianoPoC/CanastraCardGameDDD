@@ -6,5 +6,7 @@ namespace App\Domain\Deck;
 
 interface DeckInterface
 {
+    public function getCards(): array;
 
+    public function setCars(array $cards): self;
 }

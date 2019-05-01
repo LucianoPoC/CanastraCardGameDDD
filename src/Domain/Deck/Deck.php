@@ -8,20 +8,20 @@ use SplStack;
 
 class Deck extends SplStack implements DeckInterface
 {
-    /** @var Card[] */
+    /**
+     * @var Card[]
+     */
     private $cards = [];
 
     public function __construct()
     {
-//        $values = array_merge([Value::ACE], range(2, 10), [Value::JACK, Value::QUEEN, Value::KING]);
-//
-//        foreach ([Suit::SPADES, Suit::HEARTS, Suit::DIAMONDS, Suit::CLUBS] as $suit) {
-//            foreach ($values as $value) {
-//                $this->cards[] = $value.$suit;
-//            }
-//        }
-//
-//        var_dump($this->cards);exit;
+        $values = array_merge([Value::ACE], range(2, 10), [Value::JACK, Value::QUEEN, Value::KING]);
+
+        foreach ([Suit::SPADES, Suit::HEARTS, Suit::DIAMONDS, Suit::CLUBS] as $suit) {
+            foreach ($values as $value) {
+                $this->cards[] = $value . $suit;
+            }
+        }
     }
 
     public function pop()
@@ -31,4 +31,14 @@ class Deck extends SplStack implements DeckInterface
     }
 
 
+    public function getCards(): array
+    {
+        return $this->cards;
+    }
+
+    public function setCars(array $cards): DeckInterface
+    {
+        $this->cards = $cards;
+        return $this;
+    }
 }

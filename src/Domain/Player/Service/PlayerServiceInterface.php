@@ -7,5 +7,5 @@ use App\Domain\Player\PlayerInterface;
 
 interface PlayerServiceInterface
 {
-    public function fillPlayerHand(PlayerInterface $player, DeckInterface $deck);
+    public function fillPlayerHand(PlayerInterface $player, DeckInterface $deck): self;
 }

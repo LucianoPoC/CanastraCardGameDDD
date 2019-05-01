@@ -6,5 +6,4 @@ namespace App\Domain\Player\Event;
 
 class BuyANewCardEvent
 {
-
 }

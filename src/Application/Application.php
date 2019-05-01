@@ -12,6 +12,11 @@ use App\Domain\Player\Factory\PlayerFactory;
 use App\Domain\Player\Factory\PlayerFactoryInterface;
 use App\Domain\Player\Service\PlayerServiceInterface;
 
+/**
+ * Class Application
+ *
+ * @package App\Application
+ */
 class Application
 {
     /**
@@ -37,10 +42,11 @@ class Application
 
     /**
      * Application constructor.
-     * @param PlayerFactoryInterface $playerFactory
-     * @param PlayerServiceInterface $playerService
-     * @param DeckFactoryInterface $deckFactory
-     * @param DeckServiceInterface $deckService
+     *
+     * @param  PlayerFactoryInterface $playerFactory
+     * @param  PlayerServiceInterface $playerService
+     * @param  DeckFactoryInterface   $deckFactory
+     * @param  DeckServiceInterface   $deckService
      * @throws PlayersNotInitializedException
      */
     public function __construct(
@@ -48,8 +54,7 @@ class Application
         PlayerServiceInterface $playerService,
         DeckFactoryInterface $deckFactory,
         DeckServiceInterface $deckService
-    )
-    {
+    ) {
         $this->playerFactory = $playerFactory;
         $this->playerService = $playerService;
         $this->deckFactory = $deckFactory;
@@ -63,6 +68,9 @@ class Application
         $this->distributeCards($deck);
     }
 
+    /**
+     *
+     */
     private function buildPlayers(): void
     {
         foreach (range(1, 2) as $item) {
@@ -71,7 +79,7 @@ class Application
     }
 
     /**
-     * @param DeckInterface $deck
+     * @param  DeckInterface $deck
      * @throws PlayersNotInitializedException
      */
     public function distributeCards(DeckInterface $deck): void

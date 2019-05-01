@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Application;
 use App\Exception\PlayersNotInitializadException;
 use App\Factory\PlayerFactory;
 use Behat\Behat\Context\Context;
