@@ -8,7 +8,8 @@ use App\Domain\Deck\Card;
 
 class PlayerHand
 {
-    /** @var Card[] */
+    /**
+     * @var Card[]
+     */
     private $cards = [];
-
 }

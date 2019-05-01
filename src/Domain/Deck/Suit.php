@@ -6,7 +6,6 @@ namespace App\Domain\Deck;
 
 class Suit
 {
-
     public const SPADES = '♤';
     public const HEARTS = '♡';
     public const DIAMONDS = '♢';

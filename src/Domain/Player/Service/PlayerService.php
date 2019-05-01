@@ -5,13 +5,22 @@ declare(strict_types=1);
 namespace App\Domain\Player\Service;
 
 use App\Domain\Deck\DeckInterface;
-use App\Domain\Player\PlayerHand;
 use App\Domain\Player\PlayerInterface;
 
+/**
+ * Class PlayerService
+ *
+ * @package App\Domain\Player\Service
+ */
 class PlayerService implements PlayerServiceInterface
 {
-    public function fillPlayerHand(PlayerInterface $player, DeckInterface $deck)
+    /**
+     * @param  PlayerInterface $player
+     * @param  DeckInterface   $deck
+     * @return PlayerServiceInterface
+     */
+    public function fillPlayerHand(PlayerInterface $player, DeckInterface $deck): PlayerServiceInterface
     {
-        $player->setPlayerHand(new PlayerHand());
+        $player->setPlayerHand();
     }
 }

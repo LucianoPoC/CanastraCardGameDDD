@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-use App\Application;
+use App\Application\Application;
 use App\Domain\Deck\Factory\DeckFactory;
 use App\Domain\Deck\Service\DeckService;
 use App\Domain\Player\Exception\PlayersNotInitializedException;
@@ -22,5 +22,3 @@ try {
 } catch (PlayersNotInitializedException $e) {
     echo $e->getMessage();
 }
-
-var_dump($application);exit;

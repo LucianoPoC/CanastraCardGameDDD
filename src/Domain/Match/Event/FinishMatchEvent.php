@@ -6,5 +6,4 @@ namespace App\Domain\Match\Event;
 
 class FinishMatchEvent
 {
-
 }

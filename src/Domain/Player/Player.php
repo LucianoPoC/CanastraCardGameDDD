@@ -6,7 +6,9 @@ namespace App\Domain\Player;
 
 class Player implements PlayerInterface
 {
-    /** @var PlayerHand */
+    /**
+     * @var PlayerHand
+     */
     private $playerHand = array();
 
     /**
@@ -18,7 +20,7 @@ class Player implements PlayerInterface
     }
 
     /**
-     * @param PlayerHand $playerHand
+     * @param  PlayerHand $playerHand
      * @return PlayerInterface
      */
     public function setPlayerHand(PlayerHand $playerHand): PlayerInterface
