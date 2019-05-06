@@ -5,10 +5,13 @@ use App\Domain\Player\Factory\PlayerFactoryInterface;
 use App\Domain\Player\PlayerInterface;
 use PHPUnit\Framework\TestCase;
 
-class PlayerFactoryTest extends TestCase
+/**
+ * Class PlayerHandFactoryTest
+ */
+class PlayerHandFactoryTest extends TestCase
 {
     /**
-     * @var PlayerFactoryInterface
+     * @var PlayerHandFactoryInterface
      */
     private $factory;
 

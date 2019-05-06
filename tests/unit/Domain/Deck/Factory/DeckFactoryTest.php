@@ -5,6 +5,9 @@ use App\Domain\Deck\Factory\DeckFactory;
 use App\Domain\Deck\Factory\DeckFactoryInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class DeckFactoryTest
+ */
 class DeckFactoryTest extends TestCase
 {
     /**
@@ -24,5 +27,8 @@ class DeckFactoryTest extends TestCase
         $deck = $this->factory->createNew();
 
         $this->assertInstanceOf(DeckInterface::class, $deck);
+
+        $this->assertNotEmpty($deck->getCards());
+        $this->assertArrayHasKey(103, $deck->getCards());
     }
 }
