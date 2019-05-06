@@ -27,21 +27,21 @@ class PlayerService implements PlayerServiceInterface
 
     /**
      * PlayerService constructor.
+     *
      * @param PlayerHandFactoryInterface $playerHandFactory
-     * @param DeckServiceInterface $deckService
+     * @param DeckServiceInterface       $deckService
      */
     public function __construct(
         PlayerHandFactoryInterface $playerHandFactory,
         DeckServiceInterface $deckService
-    )
-    {
+    ) {
         $this->playerHandFactory = $playerHandFactory;
         $this->deckService = $deckService;
     }
 
     /**
      * @param PlayerInterface $player
-     * @param DeckServiceInterface $deckService
+     * @param DeckInterface $deck
      * @return PlayerServiceInterface
      */
     public function fillPlayerHand(PlayerInterface $player, DeckInterface $deck): PlayerServiceInterface

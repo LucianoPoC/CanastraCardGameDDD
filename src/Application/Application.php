@@ -26,7 +26,7 @@ class Application
      */
     private $players;
     /**
-     * @var PlayerFactory
+     * @var PlayerFactoryInterface
      */
     private $playerFactory;
     /**
@@ -47,16 +47,15 @@ class Application
      *
      * @param PlayerFactoryInterface $playerFactory
      * @param PlayerServiceInterface $playerService
-     * @param DeckFactoryInterface $deckFactory
-     * @param DeckServiceInterface $deckService
+     * @param DeckFactoryInterface   $deckFactory
+     * @param DeckServiceInterface   $deckService
      */
     public function __construct(
         PlayerFactoryInterface $playerFactory,
         PlayerServiceInterface $playerService,
         DeckFactoryInterface $deckFactory,
         DeckServiceInterface $deckService
-    )
-    {
+    ) {
         $this->playerFactory = $playerFactory;
         $this->playerService = $playerService;
         $this->deckFactory = $deckFactory;
@@ -76,7 +75,7 @@ class Application
     }
 
     /**
-     * @param DeckInterface $deck
+     * @param  DeckInterface $deck
      * @throws DeckEmptyException
      * @throws PlayersNotInitialisedException
      */
@@ -90,7 +89,9 @@ class Application
             throw new PlayersNotInitialisedException('Player list is empty');
         }
 
-        /** @var PlayerInterface $player */
+        /**
+ * @var PlayerInterface $player 
+*/
         foreach ($this->players as $player) {
             $this->playerService->fillPlayerHand($player, $deck);
         }

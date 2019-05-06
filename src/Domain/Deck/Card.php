@@ -9,7 +9,7 @@ namespace App\Domain\Deck;
  *
  * @package App\Domain\Deck
  */
-class Card
+class Card implements CardInterface
 {
     /**
      * @var Suit
@@ -30,7 +30,7 @@ class Card
     }
 
     /**
-     * @param Suit $suit
+     * @param  Suit $suit
      * @return Card
      */
     public function setSuit(Suit $suit): Card
@@ -48,12 +48,20 @@ class Card
     }
 
     /**
-     * @param Value $value
+     * @param  Value $value
      * @return Card
      */
     public function setValue(Value $value): Card
     {
         $this->value = $value;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->value->getValue() . $this->suit->getSuit();
     }
 }

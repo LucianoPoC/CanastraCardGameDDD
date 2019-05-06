@@ -14,7 +14,7 @@ use App\Domain\Deck\DeckInterface;
 class DeckService implements DeckServiceInterface
 {
     /**
-     * @param DeckInterface $deck
+     * @param  DeckInterface $deck
      * @return DeckInterface
      */
     public function shuffle(DeckInterface $deck): DeckInterface
@@ -27,8 +27,8 @@ class DeckService implements DeckServiceInterface
     }
 
     /**
-     * @param DeckInterface $deck
-     * @param int $quantity
+     * @param  DeckInterface $deck
+     * @param  int           $quantity
      * @return array
      */
     public function getPieceOfCards(DeckInterface $deck, int $quantity = 11): array

@@ -9,6 +9,7 @@ use App\Domain\Player\Hand\Model\PlayerHandInterface;
 
 /**
  * Class PlayerHandFactory
+ *
  * @package App\Domain\Player\Hand\Factory
  */
 class PlayerHandFactory implements PlayerHandFactoryInterface

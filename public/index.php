@@ -33,6 +33,9 @@ try {
     $application->distributeCards($deck);
     /** @var PlayerInterface[] $players */
     $players = $application->getPlayers();
+    foreach ($players as $index => $player) {
+        echo "Player ${index} -" . $players[0]->getPlayerHand();
+    }
 
 } catch (PlayersNotInitialisedException $e) {
     echo $e->getMessage();

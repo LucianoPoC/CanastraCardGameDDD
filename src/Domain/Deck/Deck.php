@@ -8,6 +8,7 @@ use SplStack;
 
 /**
  * Class Deck
+ *
  * @package App\Domain\Deck
  */
 class Deck implements DeckInterface
@@ -28,7 +29,10 @@ class Deck implements DeckInterface
         foreach (range(0, 1) as $deck) {
             foreach ([Suit::SPADES, Suit::HEARTS, Suit::DIAMONDS, Suit::CLUBS] as $suit) {
                 foreach ($values as $value) {
-                    $this->cards[] = $value . $suit;
+                    $card = new Card();
+                    $card->setSuit(new Suit($suit));
+                    $card->setValue(new Value((string)$value));
+                    $this->cards[] = $card;
                 }
             }
         }
@@ -56,7 +60,7 @@ class Deck implements DeckInterface
     }
 
     /**
-     * @param SplStack $cards
+     * @param  SplStack $cards
      * @return DeckInterface
      */
     public function setCards(SplStack $cards): DeckInterface
@@ -67,17 +71,17 @@ class Deck implements DeckInterface
     }
 
     /**
-     * @param array $cards
+     * @param  array $cards
      * @return DeckInterface
      */
     public function setCardsAsArray(array $cards): DeckInterface
     {
-        array_map(function ($item) {
-            $this->cards[] = $item;
-        }, $cards);
+        array_map(
+            function ($item) {
+                $this->cards[] = $item;
+            }, $cards
+        );
 
         return $this;
     }
-
-
 }

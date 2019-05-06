@@ -8,6 +8,7 @@ use SplStack;
 
 /**
  * Interface DeckInterface
+ *
  * @package App\Domain\Deck
  */
 interface DeckInterface
@@ -23,13 +24,13 @@ interface DeckInterface
     public function getCardsAsArray(): array;
 
     /**
-     * @param SplStack $cards
+     * @param  SplStack $cards
      * @return DeckInterface
      */
     public function setCards(SplStack $cards): self;
 
     /**
-     * @param array $cards
+     * @param  array $cards
      * @return DeckInterface
      */
     public function setCardsAsArray(array $cards): self;

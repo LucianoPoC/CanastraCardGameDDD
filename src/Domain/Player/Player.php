@@ -8,6 +8,7 @@ use App\Domain\Player\Hand\Model\PlayerHandInterface;
 
 /**
  * Class Player
+ *
  * @package App\Domain\Player
  */
 class Player implements PlayerInterface
@@ -26,7 +27,7 @@ class Player implements PlayerInterface
     }
 
     /**
-     * @param PlayerHandInterface $playerHand
+     * @param  PlayerHandInterface $playerHand
      * @return PlayerInterface
      */
     public function setPlayerHand(PlayerHandInterface $playerHand): PlayerInterface

@@ -8,6 +8,7 @@ use App\Domain\Deck\Card;
 
 /**
  * Class PlayerHand
+ *
  * @package App\Domain\Player
  */
 class PlayerHand implements PlayerHandInterface
@@ -26,12 +27,25 @@ class PlayerHand implements PlayerHandInterface
     }
 
     /**
-     * @param Card[] $cards
+     * @param  Card[] $cards
      * @return PlayerHandInterface
      */
     public function setCards(array $cards): PlayerHandInterface
     {
         $this->cards = $cards;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $output = '';
+        foreach ($this->cards as $card) {
+            $output .= $card->getValue() . $card->getSuit() . '|';
+        }
+
+        return $output;
     }
 }

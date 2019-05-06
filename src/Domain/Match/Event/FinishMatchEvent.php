@@ -6,6 +6,7 @@ namespace App\Domain\Match\Event;
 
 /**
  * Class FinishMatchEvent
+ *
  * @package App\Domain\Match\Event
  */
 class FinishMatchEvent

@@ -6,6 +6,7 @@ use App\Domain\Player\PlayerInterface;
 
 /**
  * Interface PlayerFactoryInterface
+ *
  * @package App\Domain\Player\Factory
  */
 interface PlayerFactoryInterface

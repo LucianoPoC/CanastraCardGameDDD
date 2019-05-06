@@ -6,6 +6,7 @@ namespace App\Domain\Player\Event;
 
 /**
  * Class TakeDiscardedCardsEvent
+ *
  * @package App\Domain\Player\Event
  */
 class TakeDiscardedCardsEvent

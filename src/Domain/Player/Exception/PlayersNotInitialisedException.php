@@ -8,6 +8,7 @@ use Exception;
 
 /**
  * Class PlayersNotInitializedException
+ *
  * @package App\Domain\Player\Exception
  */
 class PlayersNotInitialisedException extends Exception

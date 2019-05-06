@@ -9,6 +9,7 @@ use App\Domain\Player\PlayerInterface;
 
 /**
  * Class PlayerFactory
+ *
  * @package App\Domain\Player\Factory
  */
 class PlayerFactory implements PlayerFactoryInterface

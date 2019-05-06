@@ -8,6 +8,7 @@ use App\Domain\Player\Hand\Model\PlayerHandInterface;
 
 /**
  * Interface PlayerHandFactoryInterface
+ *
  * @package App\Domain\Player\Hand\Factory
  */
 interface PlayerHandFactoryInterface
