@@ -6,7 +6,7 @@ namespace App\Domain\Deck;
 
 /**
  * Class Card
- * 
+ *
  * @package App\Domain\Deck
  */
 class Card

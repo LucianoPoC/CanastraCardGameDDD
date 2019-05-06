@@ -7,6 +7,10 @@ namespace App\Domain\Player\Factory;
 use App\Domain\Player\Player;
 use App\Domain\Player\PlayerInterface;
 
+/**
+ * Class PlayerFactory
+ * @package App\Domain\Player\Factory
+ */
 class PlayerFactory implements PlayerFactoryInterface
 {
     /**

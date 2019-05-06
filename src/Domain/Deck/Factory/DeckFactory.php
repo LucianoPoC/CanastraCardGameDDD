@@ -15,10 +15,25 @@ use App\Domain\Deck\DeckInterface;
 class DeckFactory implements DeckFactoryInterface
 {
     /**
+     * @var Deck
+     */
+    private $deck;
+
+    /**
      * @return DeckInterface
      */
     public function createNew(): DeckInterface
     {
-        return new Deck();
+        $this->deck = new Deck();
+        return $this->builder();
+    }
+
+    /**
+     * @return DeckInterface
+     */
+    private function builder(): DeckInterface
+    {
+        $this->deck->setCars(['foo' => 'bar']);
+        return $this->deck;
     }
 }

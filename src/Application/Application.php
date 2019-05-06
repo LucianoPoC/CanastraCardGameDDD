@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Application;
 
 use App\Domain\Deck\DeckInterface;
+use App\Domain\Deck\Exception\DeckEmptyException;
 use App\Domain\Deck\Factory\DeckFactoryInterface;
 use App\Domain\Deck\Service\DeckServiceInterface;
-use App\Domain\Player\Exception\PlayersNotInitializedException;
+use App\Domain\Player\Exception\PlayersNotInitialisedException;
 use App\Domain\Player\Factory\PlayerFactory;
 use App\Domain\Player\Factory\PlayerFactoryInterface;
+use App\Domain\Player\PlayerInterface;
 use App\Domain\Player\Service\PlayerServiceInterface;
 
 /**
@@ -47,7 +49,6 @@ class Application
      * @param  PlayerServiceInterface $playerService
      * @param  DeckFactoryInterface   $deckFactory
      * @param  DeckServiceInterface   $deckService
-     * @throws PlayersNotInitializedException
      */
     public function __construct(
         PlayerFactoryInterface $playerFactory,
@@ -63,15 +64,12 @@ class Application
         $deck = $this->deckFactory->createNew();
 
         $this->deckService->shuffle($deck);
-
-        $this->buildPlayers();
-        $this->distributeCards($deck);
     }
 
     /**
      *
      */
-    private function buildPlayers(): void
+    public function buildPlayers(): void
     {
         foreach (range(1, 2) as $item) {
             $this->players[] = $this->playerFactory->createNew();
@@ -79,17 +77,34 @@ class Application
     }
 
     /**
-     * @param  DeckInterface $deck
-     * @throws PlayersNotInitializedException
+     * @param DeckInterface $deck
+     * @throws DeckEmptyException
+     * @throws PlayersNotInitialisedException
      */
     public function distributeCards(DeckInterface $deck): void
     {
-        if (empty($this->players)) {
-            throw new PlayersNotInitializedException('Player list is empty');
+        if (empty($deck->getCards())) {
+            throw new DeckEmptyException('Deck must be initialised before use');
         }
 
-        foreach ($this->players as $player) {
+        if (empty($this->players)) {
+            throw new PlayersNotInitialisedException('Player list is empty');
+        }
+
+        /**
+         * @var int $key
+         * @var PlayerInterface $player
+         */
+        foreach ($this->players as $key => $player) {
             $this->playerService->fillPlayerHand($player, $deck);
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getPlayers(): array
+    {
+        return $this->players;
     }
 }

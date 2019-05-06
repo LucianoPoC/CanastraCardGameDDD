@@ -4,27 +4,35 @@ declare(strict_types=1);
 
 namespace App\Domain\Player;
 
+use App\Domain\Player\Hand\Model\PlayerHandInterface;
+
+/**
+ * Class Player
+ * @package App\Domain\Player
+ */
 class Player implements PlayerInterface
 {
     /**
-     * @var PlayerHand
+     * @var PlayerHandInterface
      */
-    private $playerHand = array();
+    private $playerHand;
 
     /**
-     * @return PlayerHand
+     * @return PlayerHandInterface
      */
-    public function getPlayerHand(): PlayerHand
+    public function getPlayerHand(): PlayerHandInterface
     {
         return $this->playerHand;
     }
 
     /**
-     * @param  PlayerHand $playerHand
+     * @param PlayerHandInterface $playerHand
      * @return PlayerInterface
      */
-    public function setPlayerHand(PlayerHand $playerHand): PlayerInterface
+    public function setPlayerHand(PlayerHandInterface $playerHand): PlayerInterface
     {
         $this->playerHand = $playerHand;
+
+        return $this;
     }
 }
