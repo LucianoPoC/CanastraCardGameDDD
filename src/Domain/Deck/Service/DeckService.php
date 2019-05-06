@@ -14,15 +14,30 @@ use App\Domain\Deck\DeckInterface;
 class DeckService implements DeckServiceInterface
 {
     /**
-     * @param  DeckInterface $deck
+     * @param DeckInterface $deck
      * @return DeckInterface
      */
     public function shuffle(DeckInterface $deck): DeckInterface
     {
-        $cards = $deck->getCards();
+        $cards = $deck->getCardsAsArray();
         shuffle($cards);
-        $deck->setCars($cards);
+        $deck->setCardsAsArray($cards);
 
         return $deck;
+    }
+
+    /**
+     * @param DeckInterface $deck
+     * @param int $quantity
+     * @return array
+     */
+    public function getPieceOfCards(DeckInterface $deck, int $quantity = 11): array
+    {
+        $cards = [];
+        foreach (range(1, $quantity) as $item) {
+            $cards[] = $deck->getCards()->pop();
+        }
+
+        return $cards;
     }
 }

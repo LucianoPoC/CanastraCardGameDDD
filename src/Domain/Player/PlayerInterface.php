@@ -18,7 +18,7 @@ interface PlayerInterface
     public function getPlayerHand(): PlayerHandInterface;
 
     /**
-     * @param  PlayerHandInterface $playerHand
+     * @param PlayerHandInterface $playerHand
      * @return PlayerInterface
      */
     public function setPlayerHand(PlayerHandInterface $playerHand): PlayerInterface;

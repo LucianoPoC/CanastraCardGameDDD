@@ -24,7 +24,7 @@ class Application
     /**
      * @var array PlayerInterface[]
      */
-    private $players = [];
+    private $players;
     /**
      * @var PlayerFactory
      */
@@ -45,25 +45,24 @@ class Application
     /**
      * Application constructor.
      *
-     * @param  PlayerFactoryInterface $playerFactory
-     * @param  PlayerServiceInterface $playerService
-     * @param  DeckFactoryInterface   $deckFactory
-     * @param  DeckServiceInterface   $deckService
+     * @param PlayerFactoryInterface $playerFactory
+     * @param PlayerServiceInterface $playerService
+     * @param DeckFactoryInterface $deckFactory
+     * @param DeckServiceInterface $deckService
      */
     public function __construct(
         PlayerFactoryInterface $playerFactory,
         PlayerServiceInterface $playerService,
         DeckFactoryInterface $deckFactory,
         DeckServiceInterface $deckService
-    ) {
+    )
+    {
         $this->playerFactory = $playerFactory;
         $this->playerService = $playerService;
         $this->deckFactory = $deckFactory;
         $this->deckService = $deckService;
 
-        $deck = $this->deckFactory->createNew();
-
-        $this->deckService->shuffle($deck);
+        $this->buildDeck();
     }
 
     /**
@@ -83,7 +82,7 @@ class Application
      */
     public function distributeCards(DeckInterface $deck): void
     {
-        if (empty($deck->getCards())) {
+        if ($deck->getCards()->isEmpty()) {
             throw new DeckEmptyException('Deck must be initialised before use');
         }
 
@@ -91,11 +90,8 @@ class Application
             throw new PlayersNotInitialisedException('Player list is empty');
         }
 
-        /**
-         * @var int $key
-         * @var PlayerInterface $player
-         */
-        foreach ($this->players as $key => $player) {
+        /** @var PlayerInterface $player */
+        foreach ($this->players as $player) {
             $this->playerService->fillPlayerHand($player, $deck);
         }
     }
@@ -106,5 +102,16 @@ class Application
     public function getPlayers(): array
     {
         return $this->players;
+    }
+
+    /**
+     * @return DeckInterface
+     */
+    private function buildDeck(): DeckInterface
+    {
+        $deck = $this->deckFactory->createNew();
+
+        $this->deckService->shuffle($deck);
+        return $deck;
     }
 }

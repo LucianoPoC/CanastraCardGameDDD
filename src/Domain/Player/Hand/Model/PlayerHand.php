@@ -15,7 +15,7 @@ class PlayerHand implements PlayerHandInterface
     /**
      * @var Card[]
      */
-    private $cards;
+    private $cards = [];
 
     /**
      * @return Card[]

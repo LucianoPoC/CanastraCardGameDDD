@@ -10,57 +10,74 @@ use SplStack;
  * Class Deck
  * @package App\Domain\Deck
  */
-class Deck extends SplStack implements DeckInterface
+class Deck implements DeckInterface
 {
     /**
-     * @var Card[]
+     * @var SplStack
      */
-    private $cards = [];
+    private $cards;
 
     /**
      * Deck constructor.
      */
     public function __construct()
     {
+        $this->cards = new SplStack();
         $values = array_merge([Value::ACE], range(2, 10), [Value::JACK, Value::QUEEN, Value::KING]);
 
-        foreach ([Suit::SPADES, Suit::HEARTS, Suit::DIAMONDS, Suit::CLUBS] as $suit) {
-            foreach ($values as $value) {
-                $this->cards[] = $value . $suit;
+        foreach (range(0, 1) as $deck) {
+            foreach ([Suit::SPADES, Suit::HEARTS, Suit::DIAMONDS, Suit::CLUBS] as $suit) {
+                foreach ($values as $value) {
+                    $this->cards[] = $value . $suit;
+                }
             }
         }
     }
 
     /**
-     * Pops a node from the end of the doubly linked list
-     * @link https://php.net/manual/en/spldoublylinkedlist.pop.php
-     * @return mixed The value of the popped node.
-     * @since 5.3.0
+     * @return array
      */
-    public function pop()
+    public function getCardsAsArray(): array
     {
-        parent::pop();
-        return array_pop($this->cards);
+        $data = [];
+        foreach ($this->cards as $card) {
+            $data[] = $card;
+        }
+
+        return $data;
     }
 
     /**
-     * @return array
+     * @return SplStack
      */
-    public function getCards(): array
+    public function getCards(): SplStack
     {
-        if (empty($this->cards)) {
-            return ['foo' => 'bar'];
-        }
         return $this->cards;
+    }
+
+    /**
+     * @param SplStack $cards
+     * @return DeckInterface
+     */
+    public function setCards(SplStack $cards): DeckInterface
+    {
+        $this->cards = $cards;
+
+        return $this;
     }
 
     /**
      * @param array $cards
      * @return DeckInterface
      */
-    public function setCars(array $cards): DeckInterface
+    public function setCardsAsArray(array $cards): DeckInterface
     {
-        $this->cards = $cards;
+        array_map(function ($item) {
+            $this->cards[] = $item;
+        }, $cards);
+
         return $this;
     }
+
+
 }

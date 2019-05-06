@@ -33,7 +33,7 @@ try {
     $application->distributeCards($deck);
     /** @var PlayerInterface[] $players */
     $players = $application->getPlayers();
-    var_dump($players[0]->getPlayerHand()->getCards());
+
 } catch (PlayersNotInitialisedException $e) {
     echo $e->getMessage();
 }

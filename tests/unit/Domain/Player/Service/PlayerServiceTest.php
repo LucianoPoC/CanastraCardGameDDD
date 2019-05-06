@@ -42,8 +42,7 @@ class PlayerServiceTest extends TestCase
     public function testFillPlayerHandWithSuccess(): void
     {
         $player = $this->playerFactory->createNew();
-        $deckFactory = new DeckFactory();
-        $this->playerService->fillPlayerHand($player, $deckFactory->createNew());
+        $this->playerService->fillPlayerHand($player, new DeckService());
 
         $this->assertNotEmpty($player->getPlayerHand()->getCards());
     }
