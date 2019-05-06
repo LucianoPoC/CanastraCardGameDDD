@@ -9,8 +9,8 @@ use App\Domain\Deck\Exception\DeckEmptyException;
 use App\Domain\Deck\Factory\DeckFactoryInterface;
 use App\Domain\Deck\Service\DeckServiceInterface;
 use App\Domain\Player\Exception\PlayersNotInitialisedException;
-use App\Domain\Player\Factory\PlayerFactory;
 use App\Domain\Player\Factory\PlayerFactoryInterface;
+use App\Domain\Player\Hand\Model\PlayerHand;
 use App\Domain\Player\PlayerInterface;
 use App\Domain\Player\Service\PlayerServiceInterface;
 
@@ -69,7 +69,7 @@ class Application
      */
     public function buildPlayers(): void
     {
-        foreach (range(1, 2) as $item) {
+        foreach (range(1, 4) as $player) {
             $this->players[] = $this->playerFactory->createNew();
         }
     }
@@ -89,9 +89,7 @@ class Application
             throw new PlayersNotInitialisedException('Player list is empty');
         }
 
-        /**
- * @var PlayerInterface $player 
-*/
+        /** @var PlayerInterface $player */
         foreach ($this->players as $player) {
             $this->playerService->fillPlayerHand($player, $deck);
         }
