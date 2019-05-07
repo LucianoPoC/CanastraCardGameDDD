@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Player\Hand\Model;
 
 use App\Domain\Deck\Card;
+use App\Domain\Deck\CardInterface;
 
 /**
  * Class PlayerHand
@@ -33,6 +34,12 @@ class PlayerHand implements PlayerHandInterface
     public function setCards(array $cards): PlayerHandInterface
     {
         $this->cards = $cards;
+        return $this;
+    }
+
+    public function addCard(CardInterface $card): PlayerHandInterface
+    {
+        $this->cards[] = $card;
         return $this;
     }
 

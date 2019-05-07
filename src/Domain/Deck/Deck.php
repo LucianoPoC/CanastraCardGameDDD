@@ -11,7 +11,7 @@ use SplStack;
  *
  * @package App\Domain\Deck
  */
-class Deck implements DeckInterface
+final class Deck implements DeckInterface
 {
     /**
      * @var SplStack
@@ -23,7 +23,7 @@ class Deck implements DeckInterface
      */
     public function __construct()
     {
-        $this->cards = new SplStack();
+        $this->getNewStack();
         $values = array_merge([Value::ACE], range(2, 10), [Value::JACK, Value::QUEEN, Value::KING]);
 
         foreach (range(0, 1) as $deck) {
@@ -32,7 +32,7 @@ class Deck implements DeckInterface
                     $card = new Card();
                     $card->setSuit(new Suit($suit));
                     $card->setValue(new Value((string)$value));
-                    $this->cards[] = $card;
+                    $this->cards->push($card);
                 }
             }
         }
@@ -76,12 +76,19 @@ class Deck implements DeckInterface
      */
     public function setCardsAsArray(array $cards): DeckInterface
     {
+        $this->getNewStack();
         array_map(
             function ($item) {
                 $this->cards[] = $item;
-            }, $cards
+            },
+            $cards
         );
 
         return $this;
+    }
+
+    private function getNewStack(): void
+    {
+        $this->cards = new SplStack();
     }
 }

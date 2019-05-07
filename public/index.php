@@ -34,7 +34,7 @@ try {
     /** @var PlayerInterface[] $players */
     $players = $application->getPlayers();
     foreach ($players as $index => $player) {
-        echo "Player ${index} -" . $players[0]->getPlayerHand();
+        echo "Player ${index} -" . $player->getPlayerHand();
     }
 
 } catch (PlayersNotInitialisedException $e) {
