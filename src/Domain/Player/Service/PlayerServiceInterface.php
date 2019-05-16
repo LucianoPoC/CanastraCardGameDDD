@@ -2,7 +2,7 @@
 
 namespace App\Domain\Player\Service;
 
-use App\Domain\Deck\DeckInterface;
+use App\Domain\Deck\Model\DeckInterface;
 use App\Domain\Player\PlayerInterface;
 
 /**

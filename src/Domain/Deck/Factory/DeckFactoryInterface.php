@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Deck\Factory;
 
-use App\Domain\Deck\DeckInterface;
+use App\Domain\Deck\Model\DeckInterface;
 
 /**
  * Interface DeckFactoryInterface

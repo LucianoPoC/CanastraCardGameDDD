@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Deck;
+namespace App\Domain\Deck\Model;
 
 /**
  * Class Value
  *
  * @package App\Domain\Deck
  */
-class Value
+class Value implements ValueInterface
 {
     private $value;
     public const ACE = 'A';

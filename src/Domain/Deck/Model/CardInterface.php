@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Deck;
+namespace App\Domain\Deck\Model;
 
 /**
  * Class Card

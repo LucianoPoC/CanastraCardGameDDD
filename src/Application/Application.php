@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Application;
 
-use App\Domain\Deck\DeckInterface;
+use App\Domain\Deck\Model\DeckInterface;
 use App\Domain\Deck\Exception\DeckEmptyException;
-use App\Domain\Deck\Factory\DeckFactoryInterface;
 use App\Domain\Deck\Service\DeckServiceInterface;
+use App\Domain\Match\Factory\SecondHandFactoryInterface;
+use App\Domain\Match\Model\SecondHandInterface;
 use App\Domain\Player\Exception\PlayersNotInitialisedException;
 use App\Domain\Player\Factory\PlayerFactoryInterface;
-use App\Domain\Player\Hand\Model\PlayerHand;
 use App\Domain\Player\PlayerInterface;
 use App\Domain\Player\Service\PlayerServiceInterface;
 
@@ -22,7 +22,7 @@ use App\Domain\Player\Service\PlayerServiceInterface;
 class Application
 {
     /**
-     * @var array PlayerInterface[]
+     * @var PlayerInterface[]
      */
     private $players;
     /**
@@ -34,34 +34,38 @@ class Application
      */
     private $deckService;
     /**
-     * @var DeckFactoryInterface
-     */
-    private $deckFactory;
-    /**
      * @var PlayerServiceInterface
      */
     private $playerService;
+    /**
+     * @var SecondHandInterface[]
+     */
+    private $secondHand;
+    /**
+     * @var SecondHandFactoryInterface
+     */
+    private $secondHandFactory;
 
     /**
      * Application constructor.
      *
      * @param PlayerFactoryInterface $playerFactory
      * @param PlayerServiceInterface $playerService
-     * @param DeckFactoryInterface   $deckFactory
-     * @param DeckServiceInterface   $deckService
+     * @param DeckServiceInterface $deckService
+     * @param SecondHandFactoryInterface $secondHandFactory
      */
     public function __construct(
         PlayerFactoryInterface $playerFactory,
         PlayerServiceInterface $playerService,
-        DeckFactoryInterface $deckFactory,
-        DeckServiceInterface $deckService
+        DeckServiceInterface $deckService,
+        SecondHandFactoryInterface $secondHandFactory
     ) {
         $this->playerFactory = $playerFactory;
         $this->playerService = $playerService;
-        $this->deckFactory = $deckFactory;
         $this->deckService = $deckService;
+        $this->secondHandFactory = $secondHandFactory;
 
-        $this->buildDeck();
+        $this->deckService->buildDeck();
     }
 
     /**
@@ -79,7 +83,7 @@ class Application
      * @throws DeckEmptyException
      * @throws PlayersNotInitialisedException
      */
-    public function distributeCards(DeckInterface $deck): void
+    public function distributePlayersCards(DeckInterface $deck): void
     {
         if ($deck->getCards()->isEmpty()) {
             throw new DeckEmptyException('Deck must be initialised before use');
@@ -96,6 +100,18 @@ class Application
     }
 
     /**
+     * @param DeckInterface $deck
+     */
+    public function distributeSecondHandCards(DeckInterface $deck): void
+    {
+        foreach (range(1,2) as $index) {
+            $secondHand = $this->secondHandFactory->createNew();
+            $secondHand->setHand($this->deckService->getPieceOfCards($deck));
+            $this->secondHand[] = $secondHand;
+        }
+    }
+
+    /**
      * @return array
      */
     public function getPlayers(): array
@@ -104,13 +120,10 @@ class Application
     }
 
     /**
-     * @return DeckInterface
+     * @return array
      */
-    private function buildDeck(): DeckInterface
+    public function getSecondHand(): array
     {
-        $deck = $this->deckFactory->createNew();
-
-        $this->deckService->shuffle($deck);
-        return $deck;
+        return $this->secondHand;
     }
 }
