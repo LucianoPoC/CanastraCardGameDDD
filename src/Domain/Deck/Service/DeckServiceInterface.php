@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Deck\Service;
 
-use App\Domain\Deck\DeckInterface;
+use App\Domain\Deck\Model\DeckInterface;
 
 /**
  * Interface DeckServiceInterface
@@ -25,4 +25,9 @@ interface DeckServiceInterface
      * @return array
      */
     public function getPieceOfCards(DeckInterface $deck, int $quantity = 11): array;
+
+    /**
+     * @return DeckInterface
+     */
+    public function buildDeck(): DeckInterface;
 }

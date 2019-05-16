@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Deck;
+namespace App\Domain\Deck\Model;
 
 /**
  * Class Card

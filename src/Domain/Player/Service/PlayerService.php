@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Player\Service;
 
-use App\Domain\Deck\DeckInterface;
+use App\Domain\Deck\Model\DeckInterface;
 use App\Domain\Deck\Service\DeckServiceInterface;
 use App\Domain\Player\Hand\Factory\PlayerHandFactoryInterface;
 use App\Domain\Player\PlayerInterface;

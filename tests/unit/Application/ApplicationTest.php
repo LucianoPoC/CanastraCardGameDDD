@@ -108,6 +108,6 @@ class ApplicationTest extends TestCase
     {
         $this->expectException(PlayersNotInitialisedException::class);
         $deckFactory = new DeckFactory();
-        $this->app->distributeCards($deckFactory->createNew());
+        $this->app->distributePlayersCards($deckFactory->createNew());
     }
 }

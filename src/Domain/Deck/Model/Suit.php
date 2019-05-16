@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Deck;
+namespace App\Domain\Deck\Model;
 
 /**
  * Class Suit
  *
  * @package App\Domain\Deck
  */
-class Suit
+class Suit implements SuitInterface
 {
-    private $suit = '';
-    public const SPADES = '♤';
-    public const HEARTS = '♡';
-    public const DIAMONDS = '♢';
-    public const CLUBS = '♧';
+    private $suit;
 
     /**
      * Suit constructor.
@@ -31,7 +27,7 @@ class Suit
      * @param  mixed $suit
      * @return Suit
      */
-    public function setSuit($suit): Suit
+    public function setSuit(string $suit): Suit
     {
         $this->suit = $suit;
         return $this;
